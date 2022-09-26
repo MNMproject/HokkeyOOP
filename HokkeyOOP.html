@@ -1,87 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ХОККЕЙ 2021-2022</title>
-    <div id="head"> 
+    <div id="head">
         ХОККЕЙ 2021-2022
         <button onclick="playSound()" class="button">Звук Арена</button>
         <button onclick="pauseSound()" class="button">Арена Выкл.</button>
+        <div id="label"> &copy; mnm</div>
     </div>
+   
     <div id="score">Счёт
-    <div id="player1">Не Наши
-    <div id="countBlockL">0</div>
-</div>
-<div id="player2">Наши
-    <div id="countBlockR">0</div>
-    <div id ="box"></div>
-</div> 
-</div>
+        <div id="player1">Не Наши
+            <div id="countBlockL">0</div>
+        </div>
+        <div id="player2">Наши
+            <div id="countBlockR">0</div> 
+        </div>
+    </div>  
 </head>
+
 <body>
     <audio id="Sound">
         <source src="zvuki-hokkeynoy-arenyi.mp3" type="audio/mp3">
         <source src="perchatki-vratarya.mp3" type="audio/mp3">
     </audio>
-      
+
     <div id="ploshadka">
-        
+
         <div id="block1L"> 99</div>
-        
+
         <div id="player1L">18</div>
-        
+
         <div id="player2R">28</div>
-        
+
         <div id="player3L">34</div>
-        
+
         <div id="player4R">41</div>
-        
+
         <div id="player5L">55</div>
-        
+
         <div id="player6R">69</div>
-        
+
         <div id="player7L">75</div>
-        
+
         <div id="player8R">89</div>
-        
+
         <div id="player9L">44</div>
-        
+
         <div id="player10R">32</div>
 
         <div id="block1C">blockC</div>
-        
-        <div id="block1R">22</div> 
-</div>
+
+        <div id="block1R">22</div>
+    </div>
 </body>
+
 </html>
 
 <style>
 
-    #ploshadka{
+    #label{
+        float: right;
+    }
+
+    #ploshadka {
         width: 100%;
         height: 620px;
         background-image: url("ploshadka.png");
     }
 
-   #head{ 
-       text-align: center;   
+    #head {
+        text-align: center;
     }
 
     .button {
-        float:left;
+        float: left;
     }
 
-    #score{
+    #score {
         width: 200px;
         margin: auto;
-        display:grid; 
+        display: grid;
         text-align: center;
-        grid-gap:15px; 
-        grid-template-columns:50px 50px 50px 50px;
-        align-items:flex-end;
-        background:#76aceb42;   
+        grid-gap: 15px;
+        grid-template-columns: 50px 50px 50px 50px;
+        align-items: flex-end;
+        background: #76aceb42;
     }
 
     #block1L {
@@ -96,7 +104,11 @@
         align-items: flex-end;
     }
 
-    #player1L, #player3L, #player5L, #player7L, #player9L {
+    #player1L,
+    #player3L,
+    #player5L,
+    #player7L,
+    #player9L {
         position: absolute;
         float: left;
         width: 60px;
@@ -108,17 +120,21 @@
         align-items: flex-end;
     }
 
-    #player2R, #player4R, #player6R, #player8R, #player10R {
+    #player2R,
+    #player4R,
+    #player6R,
+    #player8R,
+    #player10R {
         position: absolute;
         float: left;
         width: 60px;
         height: 120px;
         background-image: url("napKras.png");
         background-size: 100%;
-        color:#f70808fd;
+        color: #f70808fd;
         font-size: 1.5vw;
         display: flex;
-        align-items: flex-end;   
+        align-items: flex-end;
     }
 
     #block1C {
@@ -140,21 +156,20 @@
         width: 60px;
         height: 120px;
         background-image: url("vratKras.png");
-        color:#f70808fd;
+        color: #f70808fd;
         font-size: 1.5vw;
         display: flex;
         align-items: flex-end;
     }
-
 </style>
 
 <script>
-// игра расчитана на диагональ 15" (1400 X 700px)
+    // игра расчитана на диагональ 15" (1400 X 700px)
 
-alert("Для управдения вратарем правой команды использовать стрелки верх низ, для левой команды кнопки W S.\n!!!Нажми любую кнопку, чтобы включить звук игры!!!");
+    alert("Для управдения вратарем правой команды использовать стрелки верх низ, для левой команды кнопки W S.\n!!!Нажми любую кнопку, чтобы включить звук игры!!!");
 
-class Block {
-        constructor (block, X, Y, vectorX, vectorY, limitXL, limitXR, limitYT, limitYD, flag, countDown, revers, counrRevers){
+    class Block {
+        constructor(block, X, Y, vectorX, vectorY, limitXL, limitXR, limitYT, limitYD, flag, countDown, revers, counrRevers) {
             this.block = block;
             this.X = X;
             this.Y = Y;
@@ -170,372 +185,372 @@ class Block {
             this.counrRevers = counrRevers;
         }
 
-        moveBlockX(){
-            this.block.style.marginLeft =this.X+"px";
+        moveBlockX() {
+            this.block.style.marginLeft = this.X + "px";
             this.X++;
         }
 
-        moveBlockY(){
-            this.block.style.marginTop =this.Y+"px";
+        moveBlockY() {
+            this.block.style.marginTop = this.Y + "px";
             this.Y++;
         }
 
-        moveBlockXrev(){
-            this.block.style.marginLeft =this.X+"px";
+        moveBlockXrev() {
+            this.block.style.marginLeft = this.X + "px";
             this.X--;
         }
 
-        moveBlockYrev(){
-            this.block.style.marginTop =this.Y+"px";
+        moveBlockYrev() {
+            this.block.style.marginTop = this.Y + "px";
             this.Y--;
         }
-        
-       movePlayer(){
-            if(this.X<=this.limitXR && this.vectorX =="right"){
+
+        movePlayer() {
+            if (this.X <= this.limitXR && this.vectorX == "right") {
                 this.moveBlockX();
-                if(this.Y <=this.limitYD && this.vectorY == "top"){
+                if (this.Y <= this.limitYD && this.vectorY == "top") {
                     this.moveBlockY();
                 }
-                else if (this.Y<=this.limitYT && this.vectorY == "down"){
+                else if (this.Y <= this.limitYT && this.vectorY == "down") {
                     this.vectorY = "top";
                 }
-                else{
+                else {
                     this.vectorY = "down";
                     this.moveBlockYrev();
                 }
             }
-             
-            else if(this.X<=this.limitXL && this.vectorX == "left"){
+
+            else if (this.X <= this.limitXL && this.vectorX == "left") {
                 this.vectorX = "right";
             }
 
-            else{
+            else {
                 this.vectorX = "left";
                 this.moveBlockXrev();
-                if(this.Y<=this.limitYD && this.vectorY == "top"){
+                if (this.Y <= this.limitYD && this.vectorY == "top") {
                     this.moveBlockY();
                 }
-                else if(this.Y<=this.limitYT && this.vectorY == "down"){
+                else if (this.Y <= this.limitYT && this.vectorY == "down") {
                     this.vectorY = "top";
                 }
-                else{
+                else {
                     this.vectorY = "down";
                     this.moveBlockYrev();
                 }
             }
         }
 
-        moveC(){
-            if(this.X<=this.limitXR && this.vectorX =="right"){
+        moveC() {
+            if (this.X <= this.limitXR && this.vectorX == "right") {
                 this.moveBlockX();
-                if(this.Y <=this.limitYD && this.vectorY == "top"){
+                if (this.Y <= this.limitYD && this.vectorY == "top") {
                     this.moveBlockY();
                 }
-                else if (this.Y<=this.limitYT && this.vectorY == "down"){
+                else if (this.Y <= this.limitYT && this.vectorY == "down") {
                     this.vectorY = "top";
                 }
-                else{
+                else {
                     this.vectorY = "down";
                     this.moveBlockYrev();
                 }
             }
-             
-            else if(this.X<=this.limitXL && this.vectorX == "left"){
+
+            else if (this.X <= this.limitXL && this.vectorX == "left") {
                 this.vectorX = "right";
             }
 
-            else{
+            else {
                 this.vectorX = "left";
                 this.moveBlockXrev();
-                if(this.Y<=this.limitYD && this.vectorY == "top"){
+                if (this.Y <= this.limitYD && this.vectorY == "top") {
                     this.moveBlockY();
                 }
-                else if(this.Y<=this.limitYT && this.vectorY == "down"){
+                else if (this.Y <= this.limitYT && this.vectorY == "down") {
                     this.vectorY = "top";
                 }
-                else{
+                else {
                     this.vectorY = "down";
                     this.moveBlockYrev();
                 }
             }
-            if(this.Y==0 || this.Y==560){
+            if (this.Y == 0 || this.Y == 560) {
                 SoundBort.play();
             }
         }
 
-        moveVratar(){
-            if(this.Y <=this.limitYD && this.vectorY == "top"){
+        moveVratar() {
+            if (this.Y <= this.limitYD && this.vectorY == "top") {
                 this.moveBlockY();
             }
-            else if (this.Y<=this.limitYT && this.vectorY == "down"){
+            else if (this.Y <= this.limitYT && this.vectorY == "down") {
                 this.vectorY = "top";
             }
-            else{
+            else {
                 this.vectorY = "down";
                 this.moveBlockYrev();
             }
         }
     }
 
-    function RandomL(){
-        return Math.random()*300;
+    function RandomL() {
+        return Math.random() * 300;
     }
-    
-    function RandomR(){
-        return Math.random()*200;
+
+    function RandomR() {
+        return Math.random() * 200;
     }
-    
-    function RandomCV(){
+
+    function RandomCV() {
         return Math.random();
     }
 
     let DriblingKeyLeft = false;
     let DriblingKeyRight = false;
 
-    window.onkeyup=function(key){
-        if(key.code=="KeyC") {
-          DriblingKeyLeft=false;
-       }
-       if(key.code=="KeyM") {
-          DriblingKeyRight=false;
-       }
+    window.onkeyup = function (key) {
+        if (key.code == "KeyC") {
+            DriblingKeyLeft = false;
+        }
+        if (key.code == "KeyM") {
+            DriblingKeyRight = false;
+        }
     }
 
-    window.onkeydown=function(key){ //управление левым блоком стрелки верх низ
-        if(key.code=="ArrowUp"){
-            blockR.vectorY="down";
-            SoundVratar.play(); 
+    window.onkeydown = function (key) { //управление левым блоком стрелки верх низ
+        if (key.code == "ArrowUp") {
+            blockR.vectorY = "down";
+            SoundVratar.play();
         }
-        else if(key.code=="ArrowDown"){
-            blockR.vectorY="top";
-            SoundVratar.play(); 
+        else if (key.code == "ArrowDown") {
+            blockR.vectorY = "top";
+            SoundVratar.play();
         }
-        if(key.code=="KeyW"){
-            blockL.vectorY="down";
-            SoundVratar.play(); 
+        if (key.code == "KeyW") {
+            blockL.vectorY = "down";
+            SoundVratar.play();
         }
-        else if(key.code=="KeyS"){
-            blockL.vectorY="top";
-            SoundVratar.play(); 
+        else if (key.code == "KeyS") {
+            blockL.vectorY = "top";
+            SoundVratar.play();
         }
-        if(key.code=="KeyC") {
-          DriblingKeyLeft=true;
-       }
-       if(key.code=="KeyM") {
-          DriblingKeyRight=true;
-       }
+        if (key.code == "KeyC") {
+            DriblingKeyLeft = true;
+        }
+        if (key.code == "KeyM") {
+            DriblingKeyRight = true;
+        }
     }
 
-    function playSound() { 
+    function playSound() {
         Sound.play();
-        Sound.loop=true;
+        Sound.loop = true;
     }
-    
-    function pauseSound() { 
-        Sound.pause(); 
-    } 
 
-   /* function playerDown(player, playerHTML,X1,Y1,X2,Y2,rotate){
-        if(player.flag == false){
-            if(X1==X2 && (Y1 <(Y2+10) && Y1 > (Y2-10))){
-                playerHTML.style.transform="rotate("+ rotate+"deg)";
-                player.flag=true;
-                SoundStolknovenieIgrokov.play();
-            }
-        }
-    }*/
+    function pauseSound() {
+        Sound.pause();
+    }
 
-    function playerDownLeft(player, playerHTML){
-        masX=[block2.X,block4.X,block6.X, block8.X, block10.X];
-        masY=[block2.Y,block4.Y,block6.Y, block8.Y, block10.Y];
-        rotate=-90;
-        if(player.flag == false){
-            for(let i = 0 ; i < masX.length; i++){
-                X=masX[i];
-                Y=masY[i];
-                if(player.X==X && (player.Y <(Y+10) && player.Y > (Y-10))){
-                    playerHTML.style.transform="rotate("+ rotate+"deg)";
-                    player.flag=true;
+    /* function playerDown(player, playerHTML,X1,Y1,X2,Y2,rotate){
+         if(player.flag == false){
+             if(X1==X2 && (Y1 <(Y2+10) && Y1 > (Y2-10))){
+                 playerHTML.style.transform="rotate("+ rotate+"deg)";
+                 player.flag=true;
+                 SoundStolknovenieIgrokov.play();
+             }
+         }
+     }*/
+
+    function playerDownLeft(player, playerHTML) {
+        masX = [block2.X, block4.X, block6.X, block8.X, block10.X];
+        masY = [block2.Y, block4.Y, block6.Y, block8.Y, block10.Y];
+        rotate = -90;
+        if (player.flag == false) {
+            for (let i = 0; i < masX.length; i++) {
+                X = masX[i];
+                Y = masY[i];
+                if (player.X == X && (player.Y < (Y + 10) && player.Y > (Y - 10))) {
+                    playerHTML.style.transform = "rotate(" + rotate + "deg)";
+                    player.flag = true;
                     SoundStolknovenieIgrokov.play();
                 }
             }
         }
     }
 
-    function playerDownRight(player, playerHTML,X1,Y1,X2,Y2,rotate){
-        masX=[block1.X,block3.X,block5.X, block7.X, block9.X];
-        masY=[block1.Y,block3.Y,block5.Y, block7.Y, block9.Y];
-        rotate=90;
-        if(player.flag == false){
-            for(let i = 0 ; i < masX.length; i++){
-                X=masX[i];
-                Y=masY[i];
-                if(player.X==X && (player.Y <(Y+10) && player.Y > (Y-10))){
-                    playerHTML.style.transform="rotate("+ rotate+"deg)";
-                    player.flag=true;
+    function playerDownRight(player, playerHTML, X1, Y1, X2, Y2, rotate) {
+        masX = [block1.X, block3.X, block5.X, block7.X, block9.X];
+        masY = [block1.Y, block3.Y, block5.Y, block7.Y, block9.Y];
+        rotate = 90;
+        if (player.flag == false) {
+            for (let i = 0; i < masX.length; i++) {
+                X = masX[i];
+                Y = masY[i];
+                if (player.X == X && (player.Y < (Y + 10) && player.Y > (Y - 10))) {
+                    playerHTML.style.transform = "rotate(" + rotate + "deg)";
+                    player.flag = true;
                     SoundStolknovenieIgrokov.play();
                 }
             }
         }
     }
-    
-    function playerUp(player, playerHTML){
-        if(player.flag==true){
+
+    function playerUp(player, playerHTML) {
+        if (player.flag == true) {
             player.countDown++;
             zamedleniePlayer(player);
         }
-        if(player.countDown == 400){
-            rotate=0;
-            playerHTML.style.transform="rotate("+ rotate+"deg)";
-            player.flag=false;
-            player.countDown=0;
+        if (player.countDown == 400) {
+            rotate = 0;
+            playerHTML.style.transform = "rotate(" + rotate + "deg)";
+            player.flag = false;
+            player.countDown = 0;
         }
     }
 
-    function zamedleniePlayer(player){
-        if((player.countDown + 1) %2){
-            if(player.vectorX == "right"){
+    function zamedleniePlayer(player) {
+        if ((player.countDown + 1) % 2) {
+            if (player.vectorX == "right") {
                 player.X--;
-                if(player.vectorY == "top"){
+                if (player.vectorY == "top") {
                     player.Y--;
                 }
-                else if(player.vectorY == "down"){
+                else if (player.vectorY == "down") {
                     player.Y++;
                 }
             }
-            else if (player.vectorX == "left"){
+            else if (player.vectorX == "left") {
                 player.X++;
-                if(player.vectorY == "top"){
+                if (player.vectorY == "top") {
                     player.Y--;
                 }
-                else if(player.vectorY == "down"){
+                else if (player.vectorY == "down") {
                     player.Y++;
                 }
-            } 
+            }
         }
     }
 
-    function reversY(player, player2){
-        if(player2.vectorY =="top" && (player.vectorY == "top" || player.vectorY == "down")){
+    function reversY(player, player2) {
+        if (player2.vectorY == "top" && (player.vectorY == "top" || player.vectorY == "down")) {
             player.vectorY = "down";
             player.Y--;
         }
-        else if (player2.vectorY =="down" && (player.vectorY == "down" || player.vectorY == "top")){
-            player.vectorY="top";
+        else if (player2.vectorY == "down" && (player.vectorY == "down" || player.vectorY == "top")) {
+            player.vectorY = "top";
             player.Y++;
         }
     }
 
-    function razvodPlayerRight(player){
-        if(player.revers == false){
-            masPlayer=[block2, block4, block6, block8, block10];
-            for(let i = 0 ; i < masPlayer.length; i++){
-                if((player.X != masPlayer[i].X && player.Y != masPlayer[i].Y) && masPlayer[i].revers == false){
-                    if((player.X >= masPlayer[i].X-140 && player.X <= masPlayer[i].X+140) && (player.Y >= masPlayer[i].Y-240 && player.Y <= masPlayer[i].Y+240)){
+    function razvodPlayerRight(player) {
+        if (player.revers == false) {
+            masPlayer = [block2, block4, block6, block8, block10];
+            for (let i = 0; i < masPlayer.length; i++) {
+                if ((player.X != masPlayer[i].X && player.Y != masPlayer[i].Y) && masPlayer[i].revers == false) {
+                    if ((player.X >= masPlayer[i].X - 140 && player.X <= masPlayer[i].X + 140) && (player.Y >= masPlayer[i].Y - 240 && player.Y <= masPlayer[i].Y + 240)) {
                         player.revers = true;
                         reversY(player, masPlayer[i]);
                     }
-               }
+                }
             }
         }
-        if(player.revers == true && player.counrRevers <= 90){
+        if (player.revers == true && player.counrRevers <= 90) {
             player.counrRevers++;
         }
-        if(player.revers == true && player.counrRevers == 90){
-            player.revers=false;
-            player.counrRevers=0;
+        if (player.revers == true && player.counrRevers == 90) {
+            player.revers = false;
+            player.counrRevers = 0;
         }
     }
 
-    function razvodPlayerLeft(player){
-        if(player.revers == false){
-            masPlayer=[block1, block3, block5, block7, block9];
-            for(let i = 0 ; i < masPlayer.length; i++){
-                if((player.X != masPlayer[i].X && player.Y != masPlayer[i].Y) && masPlayer[i].revers == false){
-                    if((player.X >= masPlayer[i].X-140 && player.X <= masPlayer[i].X+140) && (player.Y >= masPlayer[i].Y-240 && player.Y <= masPlayer[i].Y+240)){
+    function razvodPlayerLeft(player) {
+        if (player.revers == false) {
+            masPlayer = [block1, block3, block5, block7, block9];
+            for (let i = 0; i < masPlayer.length; i++) {
+                if ((player.X != masPlayer[i].X && player.Y != masPlayer[i].Y) && masPlayer[i].revers == false) {
+                    if ((player.X >= masPlayer[i].X - 140 && player.X <= masPlayer[i].X + 140) && (player.Y >= masPlayer[i].Y - 240 && player.Y <= masPlayer[i].Y + 240)) {
                         player.revers = true;
                         reversY(player, masPlayer[i]);
                     }
-               }
+                }
             }
         }
-        if(player.revers == true && player.counrRevers <= 90){
+        if (player.revers == true && player.counrRevers <= 90) {
             player.counrRevers++;
         }
-        if(player.revers == true && player.counrRevers == 90){
-            player.revers=false;
-            player.counrRevers=0;
+        if (player.revers == true && player.counrRevers == 90) {
+            player.revers = false;
+            player.counrRevers = 0;
         }
     }
- 
-    function udarPoShaibeTeamLeft(player,NumPlayer){
-        let modY=0;// модификатор удара в случае если игрок упал
-        if(player.flag == false){
-            modY=60;
+
+    function udarPoShaibeTeamLeft(player, NumPlayer) {
+        let modY = 0;// модификатор удара в случае если игрок упал
+        if (player.flag == false) {
+            modY = 60;
         }
-        else if (player.flag == true){
-            modY=10;
+        else if (player.flag == true) {
+            modY = 10;
         }
-        if(((player.X < (blockC.X+50)) && ((blockC.X-10) < (player.X+60))) && (((player.Y-modY) < blockC.Y) && (blockC.Y < (player.Y+(2*modY))))) {
-            if(DriblingKeyLeft==false){
+        if (((player.X < (blockC.X + 50)) && ((blockC.X - 10) < (player.X + 60))) && (((player.Y - modY) < blockC.Y) && (blockC.Y < (player.Y + (2 * modY))))) {
+            if (DriblingKeyLeft == false) {
                 SoundUdar.play();
             }
-            if(blockC.vectorX=="left"){
-                blockC.vectorX="right";
+            if (blockC.vectorX == "left") {
+                blockC.vectorX = "right";
                 blockC.X++;
                 shelchokPoShaibe(player, "left");
             }
-            else if(blockC.vectorX=="right"){
-                blockC.vectorX="right"; 
+            else if (blockC.vectorX == "right") {
+                blockC.vectorX = "right";
                 blockC.X++;
                 shelchokPoShaibe(player, "left");
             }
-            playerNumber=document.getElementById(NumPlayer).innerHTML;
+            playerNumber = document.getElementById(NumPlayer).innerHTML;
         }
     }
 
-    function udarPoShaibeTeamRight(player,NumPlayer){
-       let modY=0;
-       if(player.flag == false){
-            modY=60;
+    function udarPoShaibeTeamRight(player, NumPlayer) {
+        let modY = 0;
+        if (player.flag == false) {
+            modY = 60;
         }
-        else if (player.flag == true){
-            modY=10;
+        else if (player.flag == true) {
+            modY = 10;
         }
-        if(((player.X < (blockC.X+50)) && ((blockC.X-10) < (player.X+60))) && (((player.Y-modY) < blockC.Y) && (blockC.Y < (player.Y+(2*modY)))) && DriblingKeyRight==false) {
+        if (((player.X < (blockC.X + 50)) && ((blockC.X - 10) < (player.X + 60))) && (((player.Y - modY) < blockC.Y) && (blockC.Y < (player.Y + (2 * modY)))) && DriblingKeyRight == false) {
             SoundUdar.play();
-            if(blockC.vectorX=="left"){
-                blockC.vectorX="left";
+            if (blockC.vectorX == "left") {
+                blockC.vectorX = "left";
                 blockC.X--;
                 shelchokPoShaibe(player, "right");
             }
-            else if(blockC.vectorX=="right"){
-                blockC.vectorX="left"; 
+            else if (blockC.vectorX == "right") {
+                blockC.vectorX = "left";
                 blockC.X--;
                 shelchokPoShaibe(player, "right");
             }
-            playerNumber=document.getElementById(NumPlayer).innerHTML;
+            playerNumber = document.getElementById(NumPlayer).innerHTML;
         }
     }
 
-    function shelchokPoShaibe(player, team){
-        if(RandomCV()%2){
-            if(team == "right"){
-                for(let i = 0; i < 3; i++){ 
+    function shelchokPoShaibe(player, team) {
+        if (RandomCV() % 2) {
+            if (team == "right") {
+                for (let i = 0; i < 3; i++) {
                     blockC.X--;
                 }
-                if((player == block2 || player == block10) && RandomCV()%4 ){
-                    for(let i = 0; i < 6; i++){
+                if ((player == block2 || player == block10) && RandomCV() % 4) {
+                    for (let i = 0; i < 6; i++) {
                         blockC.X--;
                     }
                 }
             }
-            if(team == "left"){
-                for(let i = 0; i < 3; i++){
+            if (team == "left") {
+                for (let i = 0; i < 3; i++) {
                     blockC.X++;
                 }
-                if((player == block1 || player == block9) && RandomCV()%4){
-                    for(let i = 0; i < 6; i++){
+                if ((player == block1 || player == block9) && RandomCV() % 4) {
+                    for (let i = 0; i < 6; i++) {
                         blockC.X++;
                     }
                 }
@@ -543,145 +558,145 @@ class Block {
         }
     }
 
-    function passTeamLeft(player){
-        if(((player.X < (blockC.X+50)) && ((blockC.X-10) < (player.X+60))) && (((player.Y-60) < blockC.Y) && (blockC.Y < (player.Y+120)))) {
-            let bliznii =1400;
-            let vectorBliznii ="down"; 
-            masTeamX=[block1.X,block3.X,block5.X, block7.X, block9.X];
-            masTeamVector=[block1.vectorY,block3.vectorY,block5.vectorY, block7.vectorY, block9.vectorY]
-            for(let j =0; j < masTeamX.length; j++){
-                if(player.X < masTeamX[j]){
-                    if(masTeamX[j] < bliznii){
-                        bliznii=masTeamX[j];
-                        vectorBliznii=masTeamVector[j];
+    function passTeamLeft(player) {
+        if (((player.X < (blockC.X + 50)) && ((blockC.X - 10) < (player.X + 60))) && (((player.Y - 60) < blockC.Y) && (blockC.Y < (player.Y + 120)))) {
+            let bliznii = 1400;
+            let vectorBliznii = "down";
+            masTeamX = [block1.X, block3.X, block5.X, block7.X, block9.X];
+            masTeamVector = [block1.vectorY, block3.vectorY, block5.vectorY, block7.vectorY, block9.vectorY]
+            for (let j = 0; j < masTeamX.length; j++) {
+                if (player.X < masTeamX[j]) {
+                    if (masTeamX[j] < bliznii) {
+                        bliznii = masTeamX[j];
+                        vectorBliznii = masTeamVector[j];
                     }
                 }
             }
-            blockC.vectorY= vectorBliznii;
+            blockC.vectorY = vectorBliznii;
         }
     }
 
-    function passTeamRight(player){
-        if(((player.X < (blockC.X+50)) && ((blockC.X-10) < (player.X+60))) && (((player.Y-60) < blockC.Y) && (blockC.Y < (player.Y+120)))) {
+    function passTeamRight(player) {
+        if (((player.X < (blockC.X + 50)) && ((blockC.X - 10) < (player.X + 60))) && (((player.Y - 60) < blockC.Y) && (blockC.Y < (player.Y + 120)))) {
             let bliznii = 0;
-            let vectorBliznii ="down"; 
-            masTeamX=[block2.X,block4.X,block6.X, block8.X, block10.X];
-            masTeamVector=[block2.vectorY,block4.vectorY,block6.vectorY, block8.vectorY, block10.vectorY]
-            for(let j =0; j < masTeamX.length; j++){
-                if(player.X > masTeamX[j]){
-                    if(masTeamX[j] > bliznii){
-                        bliznii=masTeamX[j];
-                        vectorBliznii=masTeamVector[j];
+            let vectorBliznii = "down";
+            masTeamX = [block2.X, block4.X, block6.X, block8.X, block10.X];
+            masTeamVector = [block2.vectorY, block4.vectorY, block6.vectorY, block8.vectorY, block10.vectorY]
+            for (let j = 0; j < masTeamX.length; j++) {
+                if (player.X > masTeamX[j]) {
+                    if (masTeamX[j] > bliznii) {
+                        bliznii = masTeamX[j];
+                        vectorBliznii = masTeamVector[j];
                     }
                 }
             }
-            blockC.vectorY= vectorBliznii;
+            blockC.vectorY = vectorBliznii;
         }
     }
 
-    function zashitaRight(player){
-        if((player.X < blockC.X) && player.X < 920){
+    function zashitaRight(player) {
+        if ((player.X < blockC.X) && player.X < 920) {
             player.vectorX = "right";
         }
     }
 
-    function zashitaLeft(player){
-        if((player.X > blockC.X) && player.X > 550){
+    function zashitaLeft(player) {
+        if ((player.X > blockC.X) && player.X > 550) {
             player.vectorX = "left";
         }
     }
 
-    function napadenieRight(player){
-        if((player.X > blockC.X) && player.X > 550){
+    function napadenieRight(player) {
+        if ((player.X > blockC.X) && player.X > 550) {
             player.vectorX = "left";
         }
     }
 
-    function napadenieLeft(player){
-        if((player.X < blockC.X) && player.X < 920){
+    function napadenieLeft(player) {
+        if ((player.X < blockC.X) && player.X < 920) {
             player.vectorX = "right";
         }
     }
 
-    function offSideRight(player){
-        if((player.X < blockC.X) && player.X < 550){
+    function offSideRight(player) {
+        if ((player.X < blockC.X) && player.X < 550) {
             player.vectorX = "right";
         }
     }
 
-    function offSideLeft(player){
-        if((player.X > blockC.X) && player.X > 920){
+    function offSideLeft(player) {
+        if ((player.X > blockC.X) && player.X > 920) {
             player.vectorX = "left";
         }
     }
 
-    function vratarNaShaiby(player){
-        if(player.block==block1L && blockC.X < 550){
-            player.vectorY=blockC.vectorY;
+    function vratarNaShaiby(player) {
+        if (player.block == block1L && blockC.X < 550) {
+            player.vectorY = blockC.vectorY;
         }
-        else if(player.block==block1R && blockC.X > 920){
-            player.vectorY=blockC.vectorY;
-        }
-    }
-
-    function DriblingLeftTeam(player){
-        if(DriblingKeyLeft==true && (((player.X < (blockC.X+50)) && ((blockC.X-10) < (player.X+60))) && (((player.Y-60) < blockC.Y)&& (blockC.Y < (player.Y+120))))){
-            blockC.X=player.X+50;
-            blockC.Y=player.Y+50;
-        }
-        else{
-            blockC.X=blockC.X;
-            blockC.vectorY=blockC.vectorY;
+        else if (player.block == block1R && blockC.X > 920) {
+            player.vectorY = blockC.vectorY;
         }
     }
 
-    function DriblingRightTeam(player){
-        if(DriblingKeyRight==true && (((player.X < (blockC.X+50)) && ((blockC.X-10) < (player.X+60))) && (((player.Y-60) < blockC.Y)&& (blockC.Y < (player.Y+120))))){
-            blockC.X=player.X-50;
-            blockC.Y=player.Y+50;
+    function DriblingLeftTeam(player) {
+        if (DriblingKeyLeft == true && (((player.X < (blockC.X + 50)) && ((blockC.X - 10) < (player.X + 60))) && (((player.Y - 60) < blockC.Y) && (blockC.Y < (player.Y + 120))))) {
+            blockC.X = player.X + 50;
+            blockC.Y = player.Y + 50;
         }
-        else{
-            blockC.X=blockC.X;
-            blockC.vectorY=blockC.vectorY;
+        else {
+            blockC.X = blockC.X;
+            blockC.vectorY = blockC.vectorY;
         }
     }
 
-    let YR=0;
-    let YL=0;
+    function DriblingRightTeam(player) {
+        if (DriblingKeyRight == true && (((player.X < (blockC.X + 50)) && ((blockC.X - 10) < (player.X + 60))) && (((player.Y - 60) < blockC.Y) && (blockC.Y < (player.Y + 120))))) {
+            blockC.X = player.X - 50;
+            blockC.Y = player.Y + 50;
+        }
+        else {
+            blockC.X = blockC.X;
+            blockC.vectorY = blockC.vectorY;
+        }
+    }
+
+    let YR = 0;
+    let YL = 0;
 
     YL = RandomL();
     YR = RandomR();
 
     let blockC = new Block(block1C, 670, 250, "right", "down", 60, 1380, 0, 560, false, 0, false, 0);
     let block1 = new Block(player1L, 600, 0, "right", "down", 600, 1310, 0, 500, false, 0, false, 0);
-    let block2 = new Block(player2R, 730, 250, "right","top", 80, 900, 0, 500, false, 0, false, 0);
+    let block2 = new Block(player2R, 730, 250, "right", "top", 80, 900, 0, 500, false, 0, false, 0);
     let block3 = new Block(player3L, 440, 400, "left", "top", 80, 550, 0, 500, false, 0, false, 0);
-    let block4 = new Block(player4R, 1100, 150, "left","top", 550, 1310, 0, 500, false, 0, false, 0);
+    let block4 = new Block(player4R, 1100, 150, "left", "top", 550, 1310, 0, 500, false, 0, false, 0);
     let block5 = new Block(player5L, 100, 80, "right", "down", 80, 940, 0, 500, false, 0, false, 0);
-    let block6 = new Block(player6R, 1300, 450, "right","down", 900, 1310, 0, 500, false, 0, false, 0);
+    let block6 = new Block(player6R, 1300, 450, "right", "down", 900, 1310, 0, 500, false, 0, false, 0);
     let block7 = new Block(player7L, 550, 450, "right", "down", 80, 1310, 0, 500, false, 0, false, 0);
-    let block8 = new Block(player8R, 950, 300, "left","down", 80, 1310, 0, 500, false, 0, false, 0);
+    let block8 = new Block(player8R, 950, 300, "left", "down", 80, 1310, 0, 500, false, 0, false, 0);
     let block9 = new Block(player9L, 450, 450, "left", "top", 650, 1310, 0, 500, false, 0, false, 0);
-    let block10 = new Block(player10R, 1200, 50, "left","down", 80, 850, 0, 500, false, 0, false, 0);
+    let block10 = new Block(player10R, 1200, 50, "left", "down", 80, 850, 0, 500, false, 0, false, 0);
     let blockL = new Block(block1L, 0, YL, "left", "down", 0, 0, 0, 500, false, 0, false, 0);
     let blockR = new Block(block1R, 1380, YR, "left", "top", 0, 0, 0, 500, false, 0, false, 0);
 
-    let Sound =  document.getElementById("Sound");
+    let Sound = document.getElementById("Sound");
     let SoundUdar = new Audio('udar-po-shaybi.mp3');
     let SoundVratar = new Audio('vratar-beg-na-konkah.mp3');
     let SoundBort = new Audio('udar-o-bort.mp3');
     let SoundPerchatki = new Audio('perchatki-vratarya.mp3');
-    let SoundGoal =new Audio ('goal.mp3');
-    let SoundStolknovenieIgrokov =new Audio ('stolknovenie_igrokov.mp3');
-    let countBlockR =0;
-    let countBlockL =0;
+    let SoundGoal = new Audio('goal.mp3');
+    let SoundStolknovenieIgrokov = new Audio('stolknovenie_igrokov.mp3');
+    let countBlockR = 0;
+    let countBlockL = 0;
     let playerNumber;
-    
-    function MovePC(){
+
+    function MovePC() {
         blockC.moveC();
     }
 
-    function MoveP1(){
+    function MoveP1() {
         block1.movePlayer();
         DriblingLeftTeam(block1);
         napadenieLeft(block1);
@@ -693,19 +708,19 @@ class Block {
         playerUp(block1, player1L);
     }
 
-    function MoveP2(){
+    function MoveP2() {
         block2.movePlayer();
         DriblingRightTeam(block2);
         napadenieRight(block2);
         offSideRight(block2);
         passTeamRight(block2);
-        udarPoShaibeTeamRight(block2, "player2R"); 
+        udarPoShaibeTeamRight(block2, "player2R");
         razvodPlayerRight(block2);
         playerDownRight(block2, player2R);
         playerUp(block2, player2R);
     }
 
-    function MoveP3(){
+    function MoveP3() {
         block3.movePlayer();
         DriblingLeftTeam(block3);
         zashitaLeft(block3);
@@ -716,7 +731,7 @@ class Block {
         playerUp(block3, player3L);
     }
 
-    function MoveP4(){
+    function MoveP4() {
         block4.movePlayer();
         DriblingRightTeam(block4);
         zashitaRight(block4);
@@ -724,21 +739,21 @@ class Block {
         udarPoShaibeTeamRight(block4, "player4R");
         razvodPlayerRight(block4);
         playerDownRight(block4, player4R);
-        playerUp(block4, player4R); 
+        playerUp(block4, player4R);
     }
 
-    function MoveP5(){
+    function MoveP5() {
         block5.movePlayer();
         DriblingLeftTeam(block5);
         zashitaLeft(block5);
         passTeamLeft(block5);
         udarPoShaibeTeamLeft(block5, "player5L");
         razvodPlayerLeft(block5);
-        playerDownLeft(block5,player5L);
+        playerDownLeft(block5, player5L);
         playerUp(block5, player5L);
     }
 
-    function MoveP6(){
+    function MoveP6() {
         block6.movePlayer();
         DriblingRightTeam(block6);
         zashitaRight(block6);
@@ -746,10 +761,10 @@ class Block {
         udarPoShaibeTeamRight(block6, "player6R");
         razvodPlayerRight(block6);
         playerDownRight(block6, player6R);
-        playerUp(block6, player6R); 
+        playerUp(block6, player6R);
     }
 
-    function MoveP7(){
+    function MoveP7() {
         block7.movePlayer();
         DriblingLeftTeam(block7);
         offSideLeft(block7);
@@ -760,18 +775,18 @@ class Block {
         playerUp(block7, player7L);
     }
 
-    function MoveP8(){
+    function MoveP8() {
         block8.movePlayer();
         DriblingRightTeam(block8);
         offSideRight(block8);
         passTeamRight(block8);
-        udarPoShaibeTeamRight(block8,"player8R");
+        udarPoShaibeTeamRight(block8, "player8R");
         razvodPlayerRight(block8);
         playerDownRight(block8, player8R);
-        playerUp(block8, player8R); 
+        playerUp(block8, player8R);
     }
 
-    function MoveP9(){
+    function MoveP9() {
         block9.movePlayer();
         DriblingLeftTeam(block9);
         napadenieLeft(block9);
@@ -783,7 +798,7 @@ class Block {
         playerUp(block9, player9L);
     }
 
-    function MoveP10(){
+    function MoveP10() {
         block10.movePlayer();
         DriblingRightTeam(block10);
         napadenieRight(block10);
@@ -792,106 +807,104 @@ class Block {
         udarPoShaibeTeamRight(block10, "player10R");
         razvodPlayerRight(block10);
         playerDownRight(block10, player10R);
-        playerUp(block10, player10R); 
+        playerUp(block10, player10R);
     }
-    
-    function MovePL(){
+
+    function MovePL() {
         blockL.moveVratar();
         vratarNaShaiby(blockL);
         DriblingLeftTeam(blockL);
         // голл
-        if(blockC.X==60 && ((blockC.Y > (blockL.Y + 120)) || ((blockC.Y+60) < blockL.Y))){
-           if(blockC.vectorY=="top"){
-                blockC.vectorY="down";
+        if (blockC.X == 60 && ((blockC.Y > (blockL.Y + 120)) || ((blockC.Y + 60) < blockL.Y))) {
+            if (blockC.vectorY == "top") {
+                blockC.vectorY = "down";
             }
-            else if(blockC.vectorY=="down"){
-                blockC.vectorY="top";
+            else if (blockC.vectorY == "down") {
+                blockC.vectorY = "top";
             }
-            if(blockC.vectorX=="left"){
-                blockC.vectorX="right";
+            if (blockC.vectorX == "left") {
+                blockC.vectorX = "right";
             }
-            else if(blockC.vectorX=="right"){
-                blockC.vectorX="left";
-                
+            else if (blockC.vectorX == "right") {
+                blockC.vectorX = "left";
+
             }
             Score(block1L, playerNumber);
-            blockC.X=670;
-            if(RandomCV()%2==0){
-                blockC.vectorX =="right";
+            blockC.X = 670;
+            if (RandomCV() % 2 == 0) {
+                blockC.vectorX == "right";
             }
-            else{
-                blockC.vectorX =="left";
+            else {
+                blockC.vectorX == "left";
             }
         }
         // отбил
-        if(blockC.X==60 && ((blockC.Y < (blockL.Y + 120)) || ((blockC.Y+60) >  blockL.Y))){
+        if (blockC.X == 60 && ((blockC.Y < (blockL.Y + 120)) || ((blockC.Y + 60) > blockL.Y))) {
             SoundPerchatki.play();
             passTeamLeft(blockL);
         }
     }
 
-    function MovePR(){
+    function MovePR() {
         blockR.moveVratar();
         DriblingRightTeam(blockR);
-        if(blockC.X==1380 && ((blockC.Y > (blockR.Y + 120)) || ((blockC.Y+60) < blockR.Y))){
-            if(blockC.vectorY=="top"){
-                blockC.vectorY="down";
+        if (blockC.X == 1380 && ((blockC.Y > (blockR.Y + 120)) || ((blockC.Y + 60) < blockR.Y))) {
+            if (blockC.vectorY == "top") {
+                blockC.vectorY = "down";
             }
-            else if(blockC.vectorY=="down"){
-                blockC.vectorY="top";
+            else if (blockC.vectorY == "down") {
+                blockC.vectorY = "top";
             }
-            if(blockC.vectorX=="left"){
-                blockC.vectorX="right";
+            if (blockC.vectorX == "left") {
+                blockC.vectorX = "right";
             }
-            else if(blockC.vectorX=="right"){
-                blockC.vectorX="left";
+            else if (blockC.vectorX == "right") {
+                blockC.vectorX = "left";
             }
             Score(block1R, playerNumber);
-            blockC.X=670;
-            if(RandomCV()%2==0){
-                blockC.vectorX =="right";
+            blockC.X = 670;
+            if (RandomCV() % 2 == 0) {
+                blockC.vectorX == "right";
             }
-            else{
-                blockC.vectorX =="left";
+            else {
+                blockC.vectorX == "left";
             }
         }
-        if(blockC.X==1380 && ((blockC.Y < (blockR.Y + 120)) || ((blockC.Y+60) >  blockR.Y))){
+        if (blockC.X == 1380 && ((blockC.Y < (blockR.Y + 120)) || ((blockC.Y + 60) > blockR.Y))) {
             SoundPerchatki.play();
             passTeamRight(blockR);
         }
     }
-        
-    function Score(Score, num){
-        if(Score == block1R){
+
+    function Score(Score, num) {
+        if (Score == block1R) {
             countBlockL++;
-            blockC.vectorX="left";
+            blockC.vectorX = "left";
             SoundGoal.play();
-            alert("НЕ НАШИ ГОООЛ!!! Счет "+countBlockL+" : "+countBlockR +"\nГол забил игрок № "+num);
-            document.getElementById("countBlockL").innerHTML=countBlockL;
-            
+            alert("НЕ НАШИ ГОООЛ!!! Счет " + countBlockL + " : " + countBlockR + "\nГол забил игрок № " + num);
+            document.getElementById("countBlockL").innerHTML = countBlockL;
+
         }
-        else if(Score == block1L){
+        else if (Score == block1L) {
             countBlockR++;
-            blockC.vectorX="right";
+            blockC.vectorX = "right";
             SoundGoal.play();
-            alert("НАШИ ГОООЛ!!! Счет "+countBlockR+" : "+countBlockL + "\nГол забил игрок № "+num);
-            document.getElementById("countBlockR").innerHTML=countBlockR;
+            alert("НАШИ ГОООЛ!!! Счет " + countBlockR + " : " + countBlockL + "\nГол забил игрок № " + num);
+            document.getElementById("countBlockR").innerHTML = countBlockR;
         }
     }
-    
-setInterval(MovePC, 1);
-setInterval(MovePL, 1);
-setInterval(MovePR, 1);
-setInterval(MoveP1, 10);
-setInterval(MoveP2, 10);
-setInterval(MoveP3, 10);
-setInterval(MoveP4, 10);
-setInterval(MoveP5, 10); 
-setInterval(MoveP6, 10);
-setInterval(MoveP7, 10);
-setInterval(MoveP8, 10);
-setInterval(MoveP9, 10);
-setInterval(MoveP10, 10);
 
-
+    setInterval(MovePC, 1);
+    setInterval(MovePL, 1);
+    setInterval(MovePR, 1);
+    setInterval(MoveP1, 10);
+    setInterval(MoveP2, 10);
+    setInterval(MoveP3, 10);
+    setInterval(MoveP4, 10);
+    setInterval(MoveP5, 10);
+    setInterval(MoveP6, 10);
+    setInterval(MoveP7, 10);
+    setInterval(MoveP8, 10);
+    setInterval(MoveP9, 10);
+    setInterval(MoveP10, 10);
 </script>
