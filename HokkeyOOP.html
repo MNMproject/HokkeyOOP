@@ -179,7 +179,7 @@
             this.limitXR = limitXR;
             this.limitYT = limitYT;
             this.limitYD = limitYD;
-            this.flag = flag;
+            this.flag = flag; //игрок упал
             this.countDown = countDown;
             this.revers = revers;
             this.counrRevers = counrRevers;
@@ -816,7 +816,7 @@
         DriblingLeftTeam(blockL);
         // голл
         if (blockC.X == 60 && ((blockC.Y > (blockL.Y + 120)) || ((blockC.Y + 60) < blockL.Y))) {
-            if (blockC.vectorY == "top") {
+           /* if (blockC.vectorY == "top") {
                 blockC.vectorY = "down";
             }
             else if (blockC.vectorY == "down") {
@@ -828,7 +828,7 @@
             else if (blockC.vectorX == "right") {
                 blockC.vectorX = "left";
 
-            }
+            }*/
             Score(block1L, playerNumber);
             blockC.X = 670;
             if (RandomCV() % 2 == 0) {
@@ -849,7 +849,7 @@
         blockR.moveVratar();
         DriblingRightTeam(blockR);
         if (blockC.X == 1380 && ((blockC.Y > (blockR.Y + 120)) || ((blockC.Y + 60) < blockR.Y))) {
-            if (blockC.vectorY == "top") {
+            /*if (blockC.vectorY == "top") {
                 blockC.vectorY = "down";
             }
             else if (blockC.vectorY == "down") {
@@ -860,7 +860,7 @@
             }
             else if (blockC.vectorX == "right") {
                 blockC.vectorX = "left";
-            }
+            }*/
             Score(block1R, playerNumber);
             blockC.X = 670;
             if (RandomCV() % 2 == 0) {
